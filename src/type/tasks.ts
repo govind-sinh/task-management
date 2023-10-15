@@ -1,4 +1,4 @@
-export enum STATUS { PENDING = 'pending', COMPLETED = 'completed' };
+export enum STATUS { PENDING = 'pending', COMPLETED = 'completed' }
 
 export interface ITasks {
   id: string,
@@ -9,4 +9,4 @@ export interface ITasks {
   assignedTo: string,
   category: string,
   status: STATUS
-};
+}

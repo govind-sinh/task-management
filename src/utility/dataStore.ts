@@ -1,4 +1,4 @@
-import { Tasks, Task } from '../models/tasks';
+import { Task } from '../models/tasks';
 
 export class TaskStorage {
   private static instance: TaskStorage;
@@ -22,4 +22,8 @@ export class TaskStorage {
   public getTasks() {
     return Object.values(this.tasks);
   }
-};
+
+  public getTaskById(id: string) {
+    return this.tasks[id];
+  }
+}

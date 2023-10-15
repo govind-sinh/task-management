@@ -45,6 +45,10 @@ export class Tasks implements ITasks {
     return this.taskStore.getTaskById(id);
   }
 
+  deleteTaskById(id: string) {
+    return this.taskStore.deleteTask(id);
+  }
+
   updateTask(id: string, task: Task) {
     return this.taskStore.updateTask(id, task);
   }

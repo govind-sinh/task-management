@@ -43,4 +43,8 @@ export class TaskStorage {
       status
     };
   }
+
+  public deleteTask(id: string) {
+    delete this.tasks[id];
+  }
 }

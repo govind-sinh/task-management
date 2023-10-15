@@ -26,4 +26,21 @@ export class TaskStorage {
   public getTaskById(id: string) {
     return this.tasks[id];
   }
+
+  public updateTask(id: string, task: Task) {
+    const {
+      title, description, dueDate, assignedTo, category,
+      status
+    } = task;
+    const existingTask = this.getTaskById(id);
+    this.tasks[id] = {
+      ...existingTask,
+      title,
+      description,
+      dueDate,
+      assignedTo,
+      category,
+      status
+    };
+  }
 }

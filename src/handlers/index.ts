@@ -34,3 +34,21 @@ export const getTaskById = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
+export const updateTask = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { params: { id }, body: task } = req;
+    const taskExist = new Tasks().getTaskById(id);
+    
+    if (!taskExist) {
+      return res.status(400).json({ message: 'Task does not exist' });
+    }
+    
+    await new Tasks().updateTask(id, task);
+
+    return res.status(200).json({ message: 'Task updated' });
+  } catch(err) {
+    console.log('Error update task:', err);
+    res.status(500).json({ message: 'Error update task' });
+  }
+};
+

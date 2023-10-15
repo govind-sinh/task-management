@@ -44,6 +44,10 @@ export class Tasks implements ITasks {
   getTaskById(id: string) {
     return this.taskStore.getTaskById(id);
   }
+
+  updateTask(id: string, task: Task) {
+    return this.taskStore.updateTask(id, task);
+  }
 }
 
 export type Task = Pick<Tasks,

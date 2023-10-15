@@ -19,9 +19,13 @@ export class TaskStorage {
     this.tasks[task.id] = task;
   }
 
-  public getTasks(assignedTo?: any) {
+  public getTasks(assignedTo?: any, categoryName?: any) {
     if (assignedTo) {
       return this.getTaskByAssignTo(assignedTo);
+    }
+
+    if (categoryName) {
+      return this.getTaskByCategory(categoryName);
     }
 
     return Object.values(this.tasks);
@@ -54,5 +58,9 @@ export class TaskStorage {
 
   public getTaskByAssignTo(userName?: string) {
     return Object.values(this.tasks).filter((task) => task.assignedTo === userName);
+  }
+
+  public getTaskByCategory(categoryName?: string) {
+    return Object.values(this.tasks).filter((task) => task.category === categoryName);
   }
 }

@@ -37,8 +37,8 @@ export class Tasks implements ITasks {
     });
   }
 
-  getTasks(assignedTo?: any) {
-    return this.taskStore.getTasks(assignedTo);
+  getTasks(assignedTo?: any, category?: any) {
+    return this.taskStore.getTasks(assignedTo, category);
   }
 
   getTaskById(id: string) {

@@ -1,29 +1,43 @@
 import { ITasks, STATUS } from '../type/tasks';
+import { TaskStorage } from '../utility/dataStore';
 
 export class Tasks implements ITasks {
 
-  id: string;
+  id: string = Date.now().toString(36);
   title: string;
   description: string;
-  creationDate: Date;
+  creationDate: Date = new Date();
   dueDate: Date;
   assignedTo: string;
   category: string;
-  status: STATUS;
-  private taskData: Tasks[] = [];
+  status: STATUS = STATUS.PENDING;
+  taskStore: TaskStorage = TaskStorage.getInstance();
 
-  constructor(task:ITasks) {
-    this.id = task.id;
-    this.title = task.title;
-    this.description = task.description;
-    this.dueDate = task.dueDate;
-    this.assignedTo = task.assignedTo;
-    this.category = task.category;
-    this.status = task.status;
-    this.creationDate = new Date();
+  constructor(task?:ITasks) {
+    if (task) {
+      this.title = task.title;
+      this.description = task.description;
+      this.dueDate = task.dueDate;
+      this.assignedTo = task.assignedTo;
+      this.category = task.category;
+      this.status = task.status;
+    }
   }
 
   save() {
-    this.taskData.push(this);
+    this.taskStore.addTask({
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      dueDate: this.dueDate,
+      assignedTo: this.assignedTo,
+      category: this.category,
+      status: this.status,
+      creationDate: this.creationDate
+    });
+  }
+
+  getTasks() {
+    return this.taskStore.getTasks();
   }
 }

@@ -15,7 +15,8 @@ export const addTask = async (req: Request, res: Response): Promise<void> => {
 
 export const getTasks = async (req: Request, res: Response): Promise<void> => {
   try {
-    const tasks: Task[] = await new Tasks().getTasks();
+    const { query: { assignedTo } } = req;
+    const tasks: Task[] = await new Tasks().getTasks(assignedTo);
     res.status(200).json({ tasks });
   } catch (error) {
     console.log('Error get task:', error);

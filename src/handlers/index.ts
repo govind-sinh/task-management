@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { Tasks } from '../models/tasks';
+import { Tasks, Task } from '../models/tasks';
 
 // Add Task
 export const addTask = async (req: Request, res: Response): Promise<void> => {
@@ -14,7 +14,7 @@ export const addTask = async (req: Request, res: Response): Promise<void> => {
 
 export const getTasks = async(req: Request, res: Response): Promise<void> => {
   try {
-     const tasks: Tasks[] = await new Tasks().getTasks();
+     const tasks: Task[] = await new Tasks().getTasks();
      res.status(200).json({tasks})
   } catch (error) {
      throw error

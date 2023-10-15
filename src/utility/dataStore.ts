@@ -1,9 +1,9 @@
-import { Tasks } from '../models/tasks';
+import { Tasks, Task } from '../models/tasks';
 
 export class TaskStorage {
   private static instance: TaskStorage;
 
-  private tasks: Tasks[] = [];
+  private tasks: { [key: string]: Task } = {};
 
   private constructor() { }
 
@@ -15,11 +15,11 @@ export class TaskStorage {
     return TaskStorage.instance;
   }
 
-  public addTask (task: any) {
-    this.tasks.push(task);
+  public addTask(task: Task) {
+    this.tasks[task.id] = task;
   }
 
-  public getTasks () {
-    return [...this.tasks];
+  public getTasks() {
+    return Object.values(this.tasks);
   }
 };

@@ -40,4 +40,7 @@ export class Tasks implements ITasks {
   getTasks() {
     return this.taskStore.getTasks();
   }
-}
+};
+
+export type Task = Pick<Tasks,
+  'title' | 'description' | 'creationDate' | 'assignedTo' | 'category' | 'dueDate' | 'id' | 'status'>;
